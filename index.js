@@ -1,17 +1,30 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  let index = 0;
+  let startNumber = 1;
+
+  while (index < array.length) {
+    while (startNumber < array.length) {
+      if (array[index] + array[startNumber] === target) {
+        return true;
+      }
+      startNumber++;
+    }
+    index++;
+    startNumber = index + 1;
+  }
+  return false;
 }
 
 /* 
-  Write the Big O time complexity of your function here
+  0(n^2)
 */
 
 /* 
-  Add your pseudocode here
+  pseudocode
 */
 
 /*
-  Add written explanation of your solution here
+  Loops through the array comparing each number to the other number in the array and eliminating the numbers that we've alread compared 
 */
 
 // You can run `node index.js` to view these console logs
@@ -29,6 +42,17 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([4, 3, 5, 4, 3], 6));
+
+  console.log("");
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([0, 3, 5, 4, 6], 6));
+
 }
 
 module.exports = hasTargetSum;
